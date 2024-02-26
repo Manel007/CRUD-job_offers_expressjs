@@ -8,8 +8,9 @@ const company= new Schema({
   companyname: String,
   location:String,
   country:String,
-  region:String,
+ 
 
+  
 });
 
 

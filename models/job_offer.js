@@ -3,15 +3,15 @@ const Schema = mongo.Schema;
 
 
 const job_offer = new Schema({
-  offerid: Number,
+  id: Number,
   title: String,
   description: String,
   status:String,
   deadline:String,
   field:String,
-  company: { type: mongo.Schema.Types.ObjectId, ref: 'Company' } // Reference to the 'Company' model
+ // company: { type: mongo.Schema.Types.ObjectId, ref: 'Company' } // Reference to the 'Company' model
 
 });
 
 
-module.exports = mongo.model("job_offer", job_offer);
+module.exports = mongo.model("job_offer", job_offer,"manel");

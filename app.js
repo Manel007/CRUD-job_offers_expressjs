@@ -24,6 +24,13 @@ mongo.connect(
   });
 
   const UserRouter = require("./routes/users");
-  app.use("/user", UserRouter);
+  app.use("/job_offer", UserRouter);
+
+
+  const server = http.createServer(app);
+
+//Lancement du serveur
+//server.listen(3000, () => console.log("server is running!!!"));
 
 module.exports = app;
+
