@@ -1,6 +1,7 @@
 const express = require("express");
 
-const job_offer = require("../models/job_offer");
+const job_offerModel = require("../models/job_offer");
+
 
 // la rcherche de tous les utilisateurs
 async function getall(req, res) {
@@ -13,7 +14,7 @@ async function getall(req, res) {
   }
 }
 
-// la recherche par id
+/* la recherche par id
 async function getbyid(req, res) {
   try {
 
@@ -23,6 +24,8 @@ async function getbyid(req, res) {
     res.send(err);
   }
 }
+
+*/
 /*l'ajout d'un utilisateur
 async function add(req, res, next) {
     try {
@@ -35,17 +38,33 @@ async function add(req, res, next) {
   }
 */
 // l'ajout d'un utilisateur
-async function add(req, res, next) {
+
+
+
+const add_job_offer = async (req, res) => {
   try {
-  
-  const job_offer = new job_offer(req.body);
-    await job_offer.save();
-    res.status(200).send("add success");
-  } catch (err) {
-    res.status(400).send({ error: error.toString() });
+    const {//id,
+      title,
+      description,
+      status,
+      deadline,
+      field} = req.body;
+
+    const job_offer = await job_offerModel.create( { //id,
+      title,
+      description,
+      status,
+      deadline,
+      field})
+
+    return res.status(201).json(job_offer);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
-  
-}
+};
+
+   
 // delete
 /*
 router.delete('/delete/:id', async (req, res, next) => {
@@ -70,4 +89,5 @@ router.delete('/delete/:id', async (req, res, next) => {
 
 
 //module.exports = { getall, getbyid , add };
-module.exports = { getall, getbyid,add  };
+//module.exports = { getall, getbyid,add_job_offer };
+module.exports = { getall,add_job_offer };
